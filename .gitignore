@@ -1,0 +1,3 @@
+# here we write the names of files that we don't push or share with public like files that contains secret keys
+.env
+node_modules/
