@@ -1,52 +1,70 @@
-<style>
-  .btn-search{
-    background-color: #fe424d;
-    color: #fff;
-    border-radius: 25px;
-    padding: 0 1rem 0 1rem;
-  }
-  .btn-search:hover{
-    background-color: #fe424d;
-    color: #fff;
-  }
-  .btn-search i{
-    display: inline;
-    margin-right: 0.5rem;
-  }
-  .search-inp {
-    border-radius: 25px;
-    padding: 0.5rem 3rem 0.5rem 3rem;
-    font-size: 1rem;
-  }
-</style>
+<nav class="backdrop-blur-md bg-white/70 dark:bg-zinc-900/70 shadow-md border-b border-gray-200 dark:border-zinc-800 sticky top-0 z-50 transition-all duration-300">
+   <div id="scrollProgress"
+     class="fixed top-0 left-0 h-1 w-0 bg-gradient-to-r from-red-400 via-pink-500 to-purple-500 shadow-md z-[9999] transition-all duration-200 ease-in-out">
+</div>
 
-<nav class="navbar navbar-expand-md bg-body-tertiary border-bottom sticky-top">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="/listings"><i class="fa-regular fa-compass"></i></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-          <a class="nav-link" href="/listings">Explore</a>
-          <!-- <a class="nav-link disabled" aria-disabled="true">Disabled</a> -->
-        </div>
-        <div class="navbar-nav ms-auto">
-          <form class="d-flex" role="search">
-            <input class="form-control me-2 search-inp" type="search" placeholder="Search  Destination" aria-label="Search">
-            <button class="btn btn-search" type="submit"><i class="fa-solid fa-magnifying-glass"></i>Search</button>
-          </form>
-        </div>
-        <div class="navbar-nav ms-auto">
-          <a class="nav-link" href="/listings/new">Airbnb your home</a>
-         <% if (typeof currUser === 'undefined' || !currUser) { %>
-  <a class="nav-link " aria-current="page" href="/signup"><b>Sign Up</b></a>
-  <a class="nav-link" href="/login"><b>Log In</b></a>
-<% } else { %>
-  <a class="nav-link" href="/logout"><b>Log Out</b></a>
-<% } %>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16">
+      
+      <!-- Logo / Brand -->
+      <div class="flex-shrink-0">
+        <a href="/listings" class="text-2xl font-bold text-red-500 hover:text-red-600">
+          <i class="fa-regular fa-compass"></i>
+        </a>
+      </div>
 
-        </div>
+      <!-- Center Nav Links -->
+      <div class="hidden md:flex space-x-6">
+        <a href="/listings" class="text-red-500 hover:text-red-500 font-medium">Explore</a>
+        <a href="/listings/new" class="text-red-500 hover:text-red-500 font-medium">Airbnb your home</a>
+      </div>
+      <!-- Search -->
+      <div class="hidden lg:flex items-center">
+        <form class="flex items-center space-x-2">
+          <input type="search" placeholder="Search Destination"
+            class="rounded-full border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-red-400 w-64" />
+          <button type="submit"
+            class="bg-red-500 text-white px-4 py-2 rounded-full hover:bg-red-600 flex items-center">
+            <i class="fa-solid fa-magnifying-glass mr-2"></i>Search
+          </button>
+        </form>
+      </div>
+
+      <!-- Right Side Buttons -->
+      <div class="hidden md:flex items-center space-x-4">
+        <% if (typeof currUser === 'undefined' || !currUser) { %>
+          <a href="/signup" class="text-gray-700 hover:text-red-500 font-semibold">Sign Up</a>
+          <a href="/login" class="text-gray-700 hover:text-red-500 font-semibold">Log In</a>
+        <% } else { %>
+          <a href="/logout" class="text-gray-700 hover:text-red-500 font-semibold">Log Out</a>
+        <% } %>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <div class="md:hidden">
+        <button type="button" class="text-gray-600 focus:outline-none" onclick="toggleMenu()">
+          <i class="fa-solid fa-bars text-xl"></i>
+        </button>
       </div>
     </div>
-  </nav>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobileMenu" class="md:hidden hidden px-4 pb-4 space-y-2 bg-white border-t">
+    <a href="/listings" class="block text-gray-700 hover:text-red-500 font-medium">Explore</a>
+    <a href="/listings/new" class="block text-gray-700 hover:text-red-500 font-medium">Airbnb your home</a>
+    <% if (typeof currUser === 'undefined' || !currUser) { %>
+      <a href="/signup" class="block text-gray-700 hover:text-red-500 font-medium">Sign Up</a>
+      <a href="/login" class="block text-gray-700 hover:text-red-500 font-medium">Log In</a>
+    <% } else { %>
+      <a href="/logout" class="block text-gray-700 hover:text-red-500 font-medium">Log Out</a>
+    <% } %>
+  </div>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById('mobileMenu');
+      menu.classList.toggle('hidden');
+    }
+  </script>
+</nav>
