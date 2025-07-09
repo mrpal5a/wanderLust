@@ -388,7 +388,7 @@ const sampleListings = [
 
 
 // 🧠 Connect to MongoDB
-mongoose.connect("mongodb+srv://reavenbeast:pLtLhkxoebbsWhW4@cluster0.q1wzp.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0", {
+mongoose.connect("// put mongodb atlas id and password URL here", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
